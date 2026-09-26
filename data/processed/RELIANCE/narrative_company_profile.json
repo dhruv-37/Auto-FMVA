@@ -1,0 +1,14 @@
+{
+  "title": "Reliance Industries -- Company Profile",
+  "body": "Reliance Industries is one of India's largest conglomerates, spanning refining and petrochemicals, retail, and telecom (Jio). Revenue grew from INR 303,954 crore in FY17 to INR 1,055,780 crore in FY26, a roughly 9.7% increase in the latest year alone, with EBITDA margin at 19.7% in FY26. Net margin came in at 7.7% and EPS was 59.7 for the year. Returns remain solid, with ROIC of 10.0% in FY26, and the Altman Z-score of 3.49 places the company in the \"Safe\" zone. The market has re-rated the stock over the period: EV/EBITDA has risen from 5.5x in FY17 to 10.0x in FY26, and P/E from 3.0x to 22.5x, reflecting the market's growing valuation of the consumer-facing (retail, Jio) businesses layered on top of the legacy energy operations.",
+  "recent_updates": [
+    "Continued scale-up of Jio's telecom and digital services segment",
+    "Retail business growing as a larger share of group revenue",
+    "52-week trading range for FY26 was INR 1,219.20 to INR 1,584.97"
+  ],
+  "data_quality_flags": [
+    "dps and dividend_payout_ratio are effectively zero (~1e-6 to 1e-9) across the years shown, despite retained_earnings_pct sitting at ~99.99% every year -- this looks like a unit or derivation issue in the dps calculation rather than the company genuinely paying almost no dividend",
+    "cash_conversion_cycle_days is deeply negative (around -352 days in the latest ratios row), driven by payable_days near 461 -- worth confirming this isn't a payables data or turnover-ratio derivation error rather than a genuine working-capital structure",
+    "shares_outstanding roughly doubles between FY24 (6,766,094,014) and FY25 (13,532,515,463) with only a modest change in FY26 -- consistent with a stock split, but flagging since eps and dps calculations are sensitive to this and should be checked for continuity"
+  ]
+}

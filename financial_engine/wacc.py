@@ -1,5 +1,6 @@
 """Table 6 (peer_comps) + WACC calculation. Bucket A."""
 import pandas as pd
+import numpy as np
 from .schema import PEER_COMPS_COLS
 
 
@@ -19,6 +20,33 @@ def build_peer_comps(raw_peers: list[dict]) -> pd.DataFrame:
         if col not in df.columns:
             df[col] = pd.NA
     return df[PEER_COMPS_COLS]
+
+
+def compute_comps(peer_comps: pd.DataFrame, target_revenue: float, target_ebitda: float,
+                   target_eps: float, target_net_debt: float, target_shares_outstanding: float,
+                   percentiles: tuple = (25, 50, 75)) -> pd.DataFrame:
+    """Table 6 continued — EV/Revenue, EV/EBITDA, P/E percentiles across peers, applied to the
+    target company's own metrics to get implied value/share per multiple per percentile.
+    `target_net_debt` = total_debt - cash (used to bridge EV -> equity value)."""
+    multiples = {
+        "ev_revenue": ("EV/Revenue", target_revenue, True),   # True = EV-based multiple
+        "ev_ebitda": ("EV/EBITDA", target_ebitda, True),
+        "pe_ratio": ("P/E", target_eps, False),                # False = equity-value-based (per-share directly)
+    }
+    rows = []
+    for col, (label, target_metric, is_ev_multiple) in multiples.items():
+        values = peer_comps[col].dropna().astype(float)
+        for p in percentiles:
+            mult = np.percentile(values, p) if len(values) else np.nan
+            if is_ev_multiple:
+                implied_ev = mult * target_metric
+                implied_equity_value = implied_ev - target_net_debt
+                implied_value_per_share = implied_equity_value / target_shares_outstanding
+            else:
+                implied_value_per_share = mult * target_metric
+            rows.append(dict(multiple=label, percentile=p, peer_multiple=mult,
+                              implied_value_per_share=implied_value_per_share))
+    return pd.DataFrame(rows)
 
 
 def compute_wacc(peer_comps: pd.DataFrame, target_debt_equity: float, tax_rate: float,

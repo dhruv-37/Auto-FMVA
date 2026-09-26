@@ -29,7 +29,10 @@ def compute_ratios(fin: pd.DataFrame, market: pd.DataFrame = None) -> pd.DataFra
 
     r["interest_coverage_ratio"] = ebit / fin["interest"]
     r["debtors_turnover_ratio"] = fin["sales"] / fin["receivables"]
-    r["creditors_turnover_ratio"] = fin["cogs"] / fin.get("cff_other", np.nan)  # replace with payables if available
+    # No dedicated "payables"/"creditors" row in the Screener export schema — use other_liabilities
+    # as a payables proxy when a real payables figure isn't available.
+    payables_proxy = fin["other_liabilities"] if "other_liabilities" in fin.columns else np.nan
+    r["creditors_turnover_ratio"] = fin["cogs"] / payables_proxy
     r["inventory_turnover_ratio"] = fin["cogs"] / fin["inventory"]
     r["fixed_assets_turnover_ratio"] = fin["sales"] / fin["fixed_assets_net_block"]
     r["capital_turnover_ratio"] = fin["sales"] / fin["total_assets"]

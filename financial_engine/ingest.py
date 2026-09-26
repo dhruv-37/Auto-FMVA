@@ -138,7 +138,12 @@ def normalize_financials(sheets: dict) -> pd.DataFrame:
     # Derived fields not directly in ROW_MAP. Guard every derivation with .get() / column checks —
     # different Screener export tiers ("full" vs "lite") don't provide the same set of raw rows.
     out["sales_growth"] = out["sales"].pct_change()
-    out["gross_profit"] = out["sales"] - out.get("cogs", pd.Series(0, index=out.index))
+    # "cogs" from ROW_MAP is Raw Material Cost only. Screener's "Change in Inventory" is signed as
+    # (closing stock - opening stock): positive = inventory built up. Net it out of raw material
+    # cost to get true material consumed -> COGS = Raw Material Cost - Change in Inventory.
+    out["cogs"] = out.get("cogs", pd.Series(0, index=out.index)) - out.get(
+        "change_in_inventory", pd.Series(0, index=out.index)).fillna(0)
+    out["gross_profit"] = out["sales"] - out["cogs"]
     out["gross_margin"] = out["gross_profit"] / out["sales"]
 
     if "ebitda" not in out.columns or out["ebitda"].isna().all():

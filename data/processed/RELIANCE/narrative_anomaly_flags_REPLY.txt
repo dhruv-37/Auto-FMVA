@@ -1,0 +1,9 @@
+{
+  "flags": [
+    {"table": "ratios", "column": "cash_conversion_cycle_days", "year": 2026, "value": -352.7, "issue": "Deeply negative cash conversion cycle, driven by payable_days of 461 -- check whether other_liabilities is a reasonable payables proxy", "severity": "medium"},
+    {"table": "financials", "column": "dps", "year": 2026, "value": 0.0000011, "issue": "dps is effectively zero despite ~100% retained_earnings_pct -- possible unit/parsing issue", "severity": "medium"},
+    {"table": "financials", "column": "shares_outstanding", "year": 2025, "value": 13532515463, "issue": "shares_outstanding roughly doubles vs FY24 -- consistent with a stock split, confirm continuity", "severity": "low"},
+    {"table": "ratios", "column": "roic", "year": 2026, "value": 0.1004, "issue": "ROIC (10.04%) is below WACC (10.73%) in the latest year", "severity": "medium"}
+  ],
+  "data_quality_flags": []
+}

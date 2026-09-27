@@ -1,14 +1,12 @@
 {
   "title": "Reliance Industries -- Company Profile",
-  "body": "Reliance Industries is one of India's largest conglomerates, spanning refining and petrochemicals, retail, and telecom (Jio). Revenue grew from INR 303,954 crore in FY17 to INR 1,055,780 crore in FY26, a roughly 9.7% increase in the latest year alone, with EBITDA margin at 19.7% in FY26. Net margin came in at 7.7% and EPS was 59.7 for the year. Returns remain solid, with ROIC of 10.0% in FY26, and the Altman Z-score of 3.49 places the company in the \"Safe\" zone. The market has re-rated the stock over the period: EV/EBITDA has risen from 5.5x in FY17 to 10.0x in FY26, and P/E from 3.0x to 22.5x, reflecting the market's growing valuation of the consumer-facing (retail, Jio) businesses layered on top of the legacy energy operations.",
+  "body": "Reliance Industries is India's largest private-sector conglomerate, spanning refining/petrochemicals, retail, and digital services (Jio). Over FY17-FY26 sales grew from roughly Rs 3.0 lakh crore to Rs 10.6 lakh crore, with EBITDA margin settling near 19.7% and net profit margin near 7.7% in the latest year. ROE stands at 9.2% and ROIC at 10.0%, both modest for the scale of the balance sheet, consistent with a capital-intensive, diversified business rather than a pure-play compounder. Leverage is moderate: total debt of Rs 4.03 lakh crore against Rs 1.46 lakh crore of cash, and an Altman Z-score of 3.49 places the company in the 'Safe' zone.",
   "recent_updates": [
-    "Continued scale-up of Jio's telecom and digital services segment",
-    "Retail business growing as a larger share of group revenue",
-    "52-week trading range for FY26 was INR 1,219.20 to INR 1,584.97"
+    "Shares outstanding roughly doubled between FY24 and FY25, consistent with a stock split or bonus issue",
+    "EV/EBITDA of 9.98x and P/E of 22.5x as of the latest market data snapshot"
   ],
   "data_quality_flags": [
-    "dps and dividend_payout_ratio are effectively zero (~1e-6 to 1e-9) across the years shown, despite retained_earnings_pct sitting at ~99.99% every year -- this looks like a unit or derivation issue in the dps calculation rather than the company genuinely paying almost no dividend",
-    "cash_conversion_cycle_days is deeply negative (around -352 days in the latest ratios row), driven by payable_days near 461 -- worth confirming this isn't a payables data or turnover-ratio derivation error rather than a genuine working-capital structure",
-    "shares_outstanding roughly doubles between FY24 (6,766,094,014) and FY25 (13,532,515,463) with only a modest change in FY26 -- consistent with a stock split, but flagging since eps and dps calculations are sensitive to this and should be checked for continuity"
+    "dps and dividend_payout_ratio are effectively zero across all years despite retained_earnings_pct at ~99.99% -- worth confirming this isn't a dps derivation/unit issue",
+    "cash_conversion_cycle_days is deeply negative (~-353 days), driven by payable_days near 461 -- worth confirming payables data rather than treating as a genuine working-capital structure"
   ]
 }

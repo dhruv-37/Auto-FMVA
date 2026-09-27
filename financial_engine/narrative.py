@@ -250,65 +250,9 @@ def generate_narrative(module: str, company: str, results: dict, few_shot_exampl
 
 
 # ---------------------------------------------------------------------------
-# Public entry point — Claude-web (manual copy/paste) path, no API cost.
-# Same contract, same validation, no _call_claude involved.
-# ---------------------------------------------------------------------------
-def build_web_prompt(module: str, company: str, results: dict, few_shot_example: dict) -> str:
-    """Returns one block of text to paste into a Claude web chat: the system prompt (Step 4)
-    followed by the few-shot example + computed data, formatted the same way generate_narrative()
-    would've sent it over the API. Copy Claude's reply and pass it to paste_narrative()."""
-    if module not in NARRATIVE_SCHEMAS:
-        raise ValueError(f"Unknown narrative module '{module}'. Choose from {list(NARRATIVE_SCHEMAS)}")
-    schema = NARRATIVE_SCHEMAS[module]
-    system_prompt = build_system_prompt(company, schema)
-    user_content = json.dumps({
-        "few_shot_example": few_shot_example,
-        "computed_data": results,
-    }, indent=2, default=str)
-    return f"{system_prompt}\n\n{user_content}"
-
-
-def paste_narrative(module: str, results: dict, raw_text: str, out_path: str = None) -> dict:
-    """Validates text pasted back from a Claude web reply exactly as generate_narrative() would
-    validate an API response — same JSON parse, same schema check, same numeric-fidelity check
-    against `results` — just with no HTTP call and no retry (there's no automated retry loop when
-    a human is doing the copy/paste; if this raises, fix it in the web chat and paste again).
-
-    Raises NarrativeError on bad JSON or a schema violation — nothing gets silently accepted.
-    On success, returns the parsed dict and, if `out_path` is given, writes it there as JSON so
-    the report-assembly step (Step 5) can read it exactly like an API-generated narrative file."""
-    if module not in NARRATIVE_SCHEMAS:
-        raise ValueError(f"Unknown narrative module '{module}'. Choose from {list(NARRATIVE_SCHEMAS)}")
-    schema = NARRATIVE_SCHEMAS[module]
-
-    parsed = _safe_json_parse(raw_text)
-    if parsed is None:
-        raise NarrativeError(
-            "Pasted text is not valid JSON. Make sure you copied only the JSON object Claude "
-            "returned (no surrounding commentary), then try again."
-        )
-    ok, problems = _validate_schema(parsed, schema)
-    if not ok:
-        raise NarrativeError(f"Pasted JSON doesn't match the '{module}' schema: {problems}")
-
-    fidelity_issues = _check_numeric_fidelity(parsed, results)
-    if fidelity_issues:
-        parsed.setdefault("data_quality_flags", [])
-        parsed["data_quality_flags"].extend(fidelity_issues)
-
-    if out_path:
-        with open(out_path, "w") as f:
-            json.dump(parsed, f, indent=2)
-
-    return parsed
-
-
-# ---------------------------------------------------------------------------
-# Auxiliary Bucket-A-side pre-check. Not a replacement for Claude's own
-# "anomaly_flags" module (Step 3) — this is a cheap, deterministic sweep over
-# the ratios table so Claude is fed likely candidates rather than having to
-# spot every impossible number unaided (e.g. the -100% gross-margin case the
-# doc calls out by name).
+# Auxiliary Bucket-A-side pre-check. This is a cheap, deterministic sweep over
+# the ratios table so the LLM is fed likely candidates rather than having to
+# spot every impossible number unaided.
 # ---------------------------------------------------------------------------
 def flag_engine_anomalies(ratios_records: list[dict]) -> list[dict]:
     """`ratios_records` = ratios.csv/DataFrame rows as dicts. Returns candidate anomaly flags in

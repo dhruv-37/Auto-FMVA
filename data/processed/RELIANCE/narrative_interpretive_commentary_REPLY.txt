@@ -1,0 +1,7 @@
+{
+  "title": "Reliance Industries -- Interpretive Commentary",
+  "body": "ROIC of 10.0% sits modestly below the computed WACC of 10.7% in the latest year, which is worth flagging: it suggests the marginal capital deployed is not clearing its cost of capital in this period. The Altman Z-score of 3.49 keeps the company in the 'Safe' zone. The reinvestment rate of 70.3% combined with an ROIC of 10.0% produces an intrinsic growth rate of about 7.1%, broadly in line with the mid-single/high-single-digit revenue growth assumed in the forecast.",
+  "data_quality_flags": [
+    "ROIC (10.04%) is below the computed WACC (10.73%) in the latest year -- flagging rather than narrating around it"
+  ]
+}

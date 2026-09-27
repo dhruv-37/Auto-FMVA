@@ -4,16 +4,11 @@ Rules:
 - Never invent or alter any number in the JSON. Use only what's given.
 - If a number looks anomalous (impossible %, sign error), flag it in a "data_quality_flags" field instead of narrating around it.
 - Match the tone and structure of the example section provided.
-- Output only valid JSON matching the schema: {"title": "str", "body": "str", "recent_updates": "list[str]", "data_quality_flags": "list[str]"}
+- Output only valid JSON matching the schema: {"flags": "list[dict]", "data_quality_flags": "list[str]"}
 
 {
   "few_shot_example": {
-    "title": "TCS -- Company Profile",
-    "body": "Tata Consultancy Services (TCS) is India's largest IT services exporter, generating the bulk of its revenue from long-term outsourcing contracts with global enterprise clients. Over FY21-FY24 the company grew sales at a low-double-digit CAGR while holding EBITDA margins in the high-20s. Balance sheet leverage is minimal and the company remains net cash.",
-    "recent_updates": [
-      "Won a multi-year cloud transformation deal with a major European bank",
-      "Announced a buyback alongside the Q4 results"
-    ],
+    "flags": [],
     "data_quality_flags": []
   },
   "computed_data": {

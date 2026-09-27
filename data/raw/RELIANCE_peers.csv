@@ -1,0 +1,5 @@
+peer_ticker,peer_name,country,total_debt,total_equity,tax_rate,levered_beta,share_price,shares_outstanding,net_debt,revenue,ebitda,net_income
+ONGC.NS,Oil and Natural Gas Corp,India,45000,285000,0.25,0.85,255,1258,30000,660000,210000,32000
+IOCL.NS,Indian Oil Corp,India,78000,145000,0.25,0.95,140,1389,60000,850000,68000,15000
+BPCL.NS,Bharat Petroleum,India,32000,55000,0.25,1.05,320,217,22000,480000,29000,9000
+GAIL.NS,GAIL India,India,8000,62000,0.25,0.80,195,451,3000,135000,17000,6800

@@ -1,0 +1,17 @@
+{
+  "flags": [
+    {
+      "type": "Company Overview & Financial Performance",
+      "text": "RELIANCE INDUSTRIES LTD (RELIANCE.NS) is currently trading at INR 1,226, with a market capitalization of INR 1,659.09 billion. For the fiscal year 2026, the company reported sales of INR 1,055,780 million, representing a year-over-year growth of 9.65%. Profitability metrics include an EBITDA margin of 19.69% and a net margin of 7.65%, resulting in an EPS of INR 59.69. The company's balance sheet indicates borrowings of INR 402,962 million, with cash and bank balances of INR 145,977 million against an equity base of INR 904,030 million. Over the last three years, sales have grown at a CAGR of 14.84%, and the EBITDA margin has ranged between 19.05% and 19.69%. Key return ratios stand at a Return on Equity (ROE) of 9.25% and a Return on Invested Capital (ROIC) of 10.04%."
+    },
+    {
+      "type": "Valuation & Forecasts",
+      "text": "Our sales forecasting model, exhibiting a strong R-squared of 92.23% based on 10 observations, projects RELIANCE's sales to reach INR 1,131,196 million in 2027, INR 1,212,962.36 million in 2028, and INR 1,294,728.73 million in 2029. A Discounted Cash Flow (DCF) analysis, utilizing a Weighted Average Cost of Capital (WACC) of 10.73% and a terminal growth rate of 5.00%, estimates an equity value per share of INR 1,107.18."
+    },
+    {
+      "type": "Risk Assessment",
+      "text": "The company's WACC of 10.73% is composed of a cost of equity of 12.27% and a post-tax cost of debt of 5.62%. RELIANCE's adjusted beta stands at 1.08, while its market beta is 1.00. A Monte Carlo Value at Risk (VaR) analysis indicates that with 92.0% confidence, the 8th percentile VaR for the stock price is -1.98%, equating to a potential loss of INR 24.32 from the current stock price."
+    }
+  ],
+  "data_quality_flags": []
+}

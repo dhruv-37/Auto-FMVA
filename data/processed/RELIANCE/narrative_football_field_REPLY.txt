@@ -1,0 +1,7 @@
+{
+  "title": "Reliance Industries -- Valuation Football Field",
+  "body": "DCF Base implies an equity value of about Rs 1,107/share against a current price of Rs 1,226 and a 52-week range of Rs 1,219-1,585. Comps-based multiples imply a wide spread from roughly Rs 22/share to Rs 772/share, all below the current market price -- consistent with the market pricing Reliance's diversified retail/digital mix at a premium to a pure refining/OMC peer set.",
+  "data_quality_flags": [
+    "Comps-implied values are well below both DCF and the current trading price -- the peer set used here is an illustrative sample, not a vetted comp set"
+  ]
+}
